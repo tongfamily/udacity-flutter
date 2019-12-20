@@ -5,6 +5,7 @@
 // To keep your imports tidy, follow the ordering guidelines at
 // https://www.dartlang.org/guides/language/effective-dart/style#ordering
 import 'package:flutter/material.dart';
+
 // @required is defined in the meta.dart package
 import 'package:meta/meta.dart';
 
@@ -78,11 +79,14 @@ class Category extends StatelessWidget {
                   ),
                 ),
                 Center(
-                  child: Text(
-                    name,
-                    textAlign: TextAlign.center,
-                    style: Theme.of(context).textTheme.headline,
-                  ),
+                  child: Text(name,
+                      textAlign: TextAlign.center,
+                      // This uses a them
+                      // style: Theme.of(context).textTheme.headline,
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 20,
+                      )),
                 ),
               ],
             ),
