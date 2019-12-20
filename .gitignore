@@ -22,7 +22,6 @@ gradle-wrapper.jar
 
 # Additional runtime that should be ignored
 kotlin/
-Runner/
 test/
 web/
 .dart_tool/

@@ -16,11 +16,19 @@ final _backgroundColor = Colors.green[100];
 ///
 /// While it is named CategoryRoute, a more apt name would be CategoryScreen,
 /// because it is responsible for the UI at the route's destination.
-// TODO: Make CategoryRoute a StatefulWidget
-class CategoryRoute extends StatelessWidget {
-  const CategoryRoute();
+/// Now a Stateful widget that stores the categories privatley
+/// which does all the real work
+class CategoryScreen extends StatefulWidget {
+  const CategoryScreen();
 
-  // TODO: Create State object for the CategoryRoute
+  // Create State object for the CategoryRoute
+  @override
+  createState() => _CategoryScreenState();
+}
+
+/// _CategoryScreenState maintains the list of items
+/// And so you don't rebuild it all the time
+class _CategoryScreenState extends State<CategoryScreen> {
 
   static const _categoryNames = <String>[
     'Length',
@@ -44,17 +52,8 @@ class CategoryRoute extends StatelessWidget {
     Colors.red,
   ];
 
-  /// Makes the correct number of rows for the list view.
-  ///
-  /// For portrait, we use a [ListView].
-  Widget _buildCategoryWidgets(List<Widget> categories) {
-    return ListView.builder(
-      itemBuilder: (BuildContext context, int index) => categories[index],
-      itemCount: categories.length,
-    );
-  }
+  final _categories = <Category>[];
 
-  /// Returns a list of mock [Unit]s.
   List<Unit> _retrieveUnitList(String categoryName) {
     return List.generate(10, (int i) {
       i += 1;
@@ -64,29 +63,48 @@ class CategoryRoute extends StatelessWidget {
       );
     });
   }
-
+  // Instead of rebuilding all the tiem, put it into InitState
   @override
-  Widget build(BuildContext context) {
-    // TODO: Instead of re-creating a list of Categories in every build(),
-    // save this as a variable inside the State object and create
-    // the list at initialization (in initState()).
-    // This way, you also don't have to pass in the list of categories to
-    // _buildCategoryWidgets()
-    final categories = <Category>[];
-
+  void initState() {
+    super.initState();
     for (var i = 0; i < _categoryNames.length; i++) {
-      categories.add(Category(
+      _categories.add(Category(
         name: _categoryNames[i],
         color: _baseColors[i],
         iconLocation: Icons.cake,
         units: _retrieveUnitList(_categoryNames[i]),
       ));
-    }
+    };
+  }
+
+  /// Makes the correct number of rows for the list view.
+  ///
+  /// For portrait, we use a [ListView].
+  Widget _buildCategoryWidgets(List<Widget> categories) {
+    /// Returns a list of mock [Unit]s.
+    return ListView.builder(
+      itemBuilder: (BuildContext context, int index) => categories[index],
+      itemCount: categories.length,
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+
+
+
+
+    // Instead of re-creating a list of Categories in every build(),
+    // save this as a variable inside the State object and create
+    // the list at initialization (in initState()).
+    // This way, you also don't have to pass in the list of categories to
+    // _buildCategoryWidgets()
+
 
     final listView = Container(
       color: _backgroundColor,
       padding: EdgeInsets.symmetric(horizontal: 8.0),
-      child: _buildCategoryWidgets(categories),
+      child: _buildCategoryWidgets(_categories),
     );
 
     final appBar = AppBar(
