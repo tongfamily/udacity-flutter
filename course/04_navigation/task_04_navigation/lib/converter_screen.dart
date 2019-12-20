@@ -13,24 +13,26 @@ import 'package:task_04_navigation/unit.dart';
 ///
 /// While it is named ConverterRoute, a more apt name would be ConverterScreen,
 /// because it is responsible for the UI at the route's destination.
-class ConverterRoute extends StatelessWidget {
+class ConverterScreen extends StatelessWidget {
   /// Units for this [Category].
   final List<Unit> units;
+  final Color color;
 
-  /// This [ConverterRoute] requires the color and units to not be null.
-  // TODO: Pass in the [Category]'s color
-  const ConverterRoute({
+  /// This [ConverterScreen] requires the color and units to not be null.
+  const ConverterScreen({
     @required this.units,
+    this.color
   }) : assert(units != null);
 
   @override
   Widget build(BuildContext context) {
     // Here is just a placeholder for a list of mock units
     final unitWidgets = units.map((Unit unit) {
-      // TODO: Set the color for this Container
+      // Get color from the caller
       return Container(
         margin: EdgeInsets.all(8.0),
         padding: EdgeInsets.all(16.0),
+        color: color,
         child: Column(
           children: <Widget>[
             Text(

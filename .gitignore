@@ -19,3 +19,5 @@ gradle-wrapper.properties
 gradlew
 gradlew.bat
 gradle-wrapper.jar
+
+.dart_tool/
