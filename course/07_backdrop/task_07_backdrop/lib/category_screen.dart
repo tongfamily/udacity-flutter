@@ -17,14 +17,14 @@ final _backgroundColor = Colors.green[100];
 ///
 /// While it is named CategoryRoute, a more apt name would be CategoryScreen,
 /// because it is responsible for the UI at the route's destination.
-class CategoryRoute extends StatefulWidget {
-  const CategoryRoute();
+class CategoryScreen extends StatefulWidget {
+  const CategoryScreen();
 
   @override
-  _CategoryRouteState createState() => _CategoryRouteState();
+  _CategoryScreenState createState() => _CategoryScreenState();
 }
 
-class _CategoryRouteState extends State<CategoryRoute> {
+class _CategoryScreenState extends State<CategoryScreen> {
   // TODO: Keep track of a default [Category], and the currently-selected
   // [Category]
   final _categories = <Category>[];
@@ -90,7 +90,9 @@ class _CategoryRouteState extends State<CategoryRoute> {
 
   // TODO: Fill out this function
   /// Function to call when a [Category] is tapped.
-  void _onCategoryTap(Category category) {}
+  void _onCategoryTap(Category category) {
+    // Goto the correct unit conversion
+  }
 
   /// Makes the correct number of rows for the list view.
   ///
